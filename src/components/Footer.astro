@@ -1,0 +1,125 @@
+---
+import { SITE, NAV_LINKS, whatsappLink } from '../data/site.js';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img
+        src={SITE.logo}
+        alt={SITE.logoAlt}
+        width="170"
+        height="50"
+        loading="lazy"
+        class="footer-logo"
+      />
+      <p>
+        {SITE.name} assists buyers, sellers and investors with residential and commercial
+        property requirements across {SITE.serviceAreas.join(', ')}.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Navigation</h3>
+      <ul>
+        {NAV_LINKS.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <ul class="footer-contact">
+        <li><a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></li>
+        <li><a href={whatsappLink('general')} target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+        <li>{SITE.location}</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Service Areas</h3>
+      <ul>
+        {SITE.serviceAreas.map((area) => <li>{area}</li>)}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; {year} {SITE.name}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-deep-green);
+    color: rgba(255,255,255,0.85);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    padding: 4rem 1.25rem 2.5rem;
+  }
+
+  .footer-brand p {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.95rem;
+    max-width: 34ch;
+  }
+
+  .footer-logo {
+    height: 44px;
+    width: auto;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer-col h3 {
+    color: var(--color-gold-light);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .footer-col a { color: rgba(255,255,255,0.82); }
+  .footer-col a:hover { color: var(--color-gold-light); }
+  .footer-contact li { color: rgba(255,255,255,0.82); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.14);
+  }
+
+  .footer-bottom-inner {
+    padding: 1.25rem 1.25rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+  }
+
+  @media (max-width: 880px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>

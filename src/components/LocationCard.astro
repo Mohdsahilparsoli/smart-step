@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  name: string;
+  description: string;
+}
+
+const { name, description } = Astro.props;
+---
+
+<div class="card location-card">
+  <div class="location-icon"><Icon name="pin" size={22} /></div>
+  <h3>{name}</h3>
+  <p>{description}</p>
+</div>
+
+<style>
+  .location-card {
+    padding: 1.6rem 1.4rem;
+    text-align: left;
+    position: relative;
+    border-top: 3px solid var(--color-gold);
+  }
+  .location-icon { color: var(--color-gold); margin-bottom: 0.6rem; }
+  .location-card h3 { margin-bottom: 0.4rem; font-size: 1.1rem; }
+  .location-card p { font-size: 0.9rem; margin: 0; }
+</style>

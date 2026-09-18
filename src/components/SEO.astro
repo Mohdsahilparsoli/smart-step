@@ -1,0 +1,60 @@
+---
+import { SITE } from '../data/site.js';
+
+export interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogType?: string;
+  ogImage?: string;
+  robots?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path = '/',
+  ogType = 'website',
+  ogImage = SITE.ogImage,
+  robots = 'index, follow',
+  noindex = false
+} = Astro.props;
+
+const canonicalURL = new URL(path, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+const resolvedRobots = noindex ? 'noindex, nofollow' : robots;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={resolvedRobots} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="theme-color" content={SITE.themeColor} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content="en_IN" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageURL} />
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png" />
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

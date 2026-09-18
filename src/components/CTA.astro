@@ -1,0 +1,96 @@
+---
+import { SITE, whatsappLink } from '../data/site.js';
+import Icon from './Icon.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  showLocation?: boolean;
+  variant?: 'dark' | 'light';
+}
+
+const {
+  title,
+  description,
+  primaryLabel = 'Call Now',
+  primaryHref = SITE.phoneHref,
+  secondaryLabel = 'WhatsApp Us',
+  secondaryHref = whatsappLink('general'),
+  showLocation = false,
+  variant = 'dark'
+} = Astro.props;
+---
+
+<div class:list={['cta-box', variant]}>
+  <div class="cta-text">
+    <h2>{title}</h2>
+    {description && <p>{description}</p>}
+    {showLocation && (
+      <p class="cta-meta">
+        <span class="cta-meta-item"><Icon name="pin" size={15} /> {SITE.location}</span>
+        <span class="cta-meta-item"><Icon name="phone" size={15} /> <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></span>
+      </p>
+    )}
+  </div>
+  <div class="btn-row cta-buttons">
+    <a class="btn btn-gold" href={primaryHref}><Icon name="phone" size={17} /> {primaryLabel}</a>
+    <a
+      class="btn btn-outline-light"
+      href={secondaryHref}
+      target={secondaryHref.startsWith('http') ? '_blank' : undefined}
+      rel={secondaryHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+    ><Icon name="whatsapp" size={17} /> {secondaryLabel}</a>
+  </div>
+</div>
+
+<style>
+  .cta-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    border-radius: var(--radius-lg);
+    padding: clamp(2.2rem, 4vw, 3.2rem);
+  }
+
+  .cta-box.dark {
+    background: var(--color-deep-green);
+    color: #fff;
+  }
+  .cta-box.dark h2 { color: #fff; }
+  .cta-box.dark p { color: rgba(255,255,255,0.82); }
+
+  .cta-box.light {
+    background: var(--color-offwhite);
+    border: 1px solid var(--color-border);
+  }
+
+  .cta-text { max-width: 46ch; }
+  .cta-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    font-size: 0.95rem;
+    margin-top: 0.6rem;
+  }
+  .cta-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .cta-box.light .cta-meta a,
+  .cta-box.dark .cta-meta a { color: var(--color-gold); font-weight: 700; }
+
+  .cta-buttons { flex-shrink: 0; }
+
+  @media (max-width: 700px) {
+    .cta-box { flex-direction: column; align-items: flex-start; }
+    .cta-buttons { width: 100%; }
+    .cta-buttons .btn { flex: 1; }
+  }
+</style>

@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CTA from '../components/CTA.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, whatsappLink } from '../data/site.js';
+import { PROJECTS, getProjectsByType } from '../data/projects.js';
+import { getOrganizationSchema } from '../data/schema.js';
+
+const siteUrl = Astro.site.toString();
+const jsonLd = getOrganizationSchema(siteUrl);
+
+const residential = getProjectsByType('residential');
+const commercial = getProjectsByType('commercial');
+const plots = getProjectsByType('plots');
+
+const highlights = [
+  { icon: 'pin', title: 'Location', description: 'How well-connected the property is to daily needs and transport.' },
+  { icon: 'building2', title: 'Property Type', description: 'Whether the option is residential, commercial, or a plot suited to your plans.' },
+  { icon: 'link', title: 'Connectivity', description: 'Access to major roads and proximity to Ghaziabad, Noida and Delhi.' },
+  { icon: 'check-circle', title: 'Amenities', description: 'Facilities associated with the property, where applicable.' },
+  { icon: 'file', title: 'Project Details', description: 'Confirmed specifics we can walk you through directly.' },
+  { icon: 'users', title: 'Your Requirements', description: 'How closely an option matches your budget and preferences.' }
+];
+---
+
+<BaseLayout
+  title="Real Estate Projects in Ghaziabad, Noida & Delhi NCR | Smart Steps"
+  description="Browse residential, commercial and plot property options in Ghaziabad, Noida and Delhi NCR with Smart Steps Siddhart Vihar. Contact us for verified project details."
+  path="/projects/"
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Projects' }]} />
+  </div>
+
+  <!-- 1. Project Hero -->
+  <Hero
+    eyebrow="Projects"
+    title="Real Estate Projects in Ghaziabad, Noida & Delhi NCR"
+    subtitle={`A look at the type of residential, commercial and plot options ${SITE.shortName} assists with across Siddhart Vihar, Ghaziabad, Noida and Delhi NCR.`}
+    image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
+    imageAlt="City skyline with high-rise buildings representing Delhi NCR"
+  />
+
+  <!-- 2. Project Introduction -->
+  <section class="section">
+    <div class="container narrow">
+      <SectionHeading eyebrow="What You'll Find Here" title="Property Options Worth Exploring" />
+      <p>
+        This page brings together sample residential, commercial and plot listings that reflect
+        the kind of properties we help clients evaluate. Listings marked as sample entries are
+        placeholders  contact us directly for current availability and verified specifications.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Featured Projects -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading eyebrow="Featured" title="Featured Projects" />
+      <div class="grid grid-3">
+        {PROJECTS.slice(0, 3).map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Residential Projects -->
+  <section class="section" id="residential">
+    <div class="container">
+      <SectionHeading eyebrow="Residential" title="Residential Projects" />
+      <div class="grid grid-3">
+        {residential.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Commercial Projects -->
+  <section class="section section--alt" id="commercial">
+    <div class="container">
+      <SectionHeading eyebrow="Commercial" title="Commercial Projects" />
+      <div class="grid grid-3">
+        {commercial.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Plots / Land -->
+  <section class="section" id="plots">
+    <div class="container">
+      <SectionHeading eyebrow="Plots & Land" title="Plots / Land" />
+      <div class="grid grid-3">
+        {plots.map((project) => <ProjectCard project={project} />)}
+      </div>
+      <p class="note">More plot and land options can be added here as they are confirmed.</p>
+    </div>
+  </section>
+
+  <!-- 7. Project Locations -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading eyebrow="Where" title="Project Locations" />
+      <div class="grid grid-4">
+        <div class="card location-chip"><Icon name="pin" size={20} /><h3>Ghaziabad</h3></div>
+        <div class="card location-chip"><Icon name="pin" size={20} /><h3>Siddhart Vihar</h3></div>
+        <div class="card location-chip"><Icon name="pin" size={20} /><h3>Noida</h3></div>
+        <div class="card location-chip"><Icon name="pin" size={20} /><h3>Delhi NCR</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Project Highlights -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="What to Consider" title="Project Highlights to Evaluate" />
+      <div class="grid grid-3">
+        {highlights.map((h) => (
+          <div class="card highlight-card">
+            <div class="highlight-icon"><Icon name={h.icon} size={22} /></div>
+            <h3>{h.title}</h3>
+            <p>{h.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Project Enquiry CTA -->
+  <section class="section section--alt">
+    <div class="container">
+      <CTA
+        title="Interested in a Project?"
+        description="Share the property type and location you're looking for, and we'll help you find relevant options."
+        primaryLabel="Enquire Now"
+        secondaryHref={whatsappLink('project')}
+      />
+    </div>
+  </section>
+
+  <!-- 10. Final Call / WhatsApp CTA -->
+  <section class="section">
+    <div class="container">
+      <CTA
+        title="Talk to Us About Your Next Property"
+        showLocation={true}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 78ch; }
+  .note { font-size: 0.9rem; color: var(--color-text-muted); margin-top: 1.5rem; }
+  .location-chip {
+    padding: 1.6rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-gold);
+  }
+  .location-chip h3 { margin: 0; font-size: 1.05rem; color: var(--color-deep-green); }
+  .highlight-card { padding: 1.7rem 1.5rem; }
+  .highlight-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--color-offwhite);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-deep-green);
+    margin-bottom: 0.9rem;
+  }
+  .highlight-card p { font-size: 0.92rem; margin: 0; }
+</style>

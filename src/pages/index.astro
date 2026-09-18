@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import LocationCard from '../components/LocationCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import CTA from '../components/CTA.astro';
+import { SITE, whatsappLink } from '../data/site.js';
+import { getFeaturedProjects } from '../data/projects.js';
+import { getOrganizationSchema, getWebsiteSchema } from '../data/schema.js';
+
+const siteUrl = Astro.site.toString();
+const jsonLd = [getOrganizationSchema(siteUrl), getWebsiteSchema(siteUrl)];
+
+const services = [
+  { icon: 'key', title: 'Property Buying Assistance', description: 'Support in shortlisting and evaluating residential and commercial properties that match your requirements and budget.' },
+  { icon: 'tag', title: 'Property Selling Assistance', description: 'Guidance to help owners present and reach the right buyers for their residential or commercial property.' },
+  { icon: 'home', title: 'Residential Properties', description: 'Assistance across flats, apartments and residential plots in Ghaziabad, Noida and Delhi NCR.' },
+  { icon: 'building', title: 'Commercial Properties', description: 'Support for office spaces, retail units and other commercial property requirements.' },
+  { icon: 'handshake', title: 'Property Consultation', description: 'One-on-one discussion to understand your requirement before recommending suitable property options.' },
+  { icon: 'trending-up', title: 'Property Investment Assistance', description: 'Guidance to help you evaluate property options if you are exploring real estate as part of your investment plans.' }
+];
+
+const propertyCategories = [
+  { icon: 'home', title: 'Residential Properties', description: 'Homes suited for individuals and families across Ghaziabad, Noida and Delhi NCR.' },
+  { icon: 'building', title: 'Commercial Properties', description: 'Office and retail spaces for businesses looking to set up or expand.' },
+  { icon: 'building2', title: 'Flats & Apartments', description: 'A range of apartment options across different localities and budgets.' },
+  { icon: 'land', title: 'Plots & Land', description: 'Land and plotted options for buyers planning a custom build.' }
+];
+
+const areas = [
+  { name: 'Siddhart Vihar', description: 'Our base location, with local, on-ground property knowledge.' },
+  { name: 'Ghaziabad', description: 'Assistance across residential and commercial pockets of Ghaziabad.' },
+  { name: 'Noida', description: 'Support for buyers and investors exploring Noida\'s property market.' },
+  { name: 'Delhi NCR', description: 'Property assistance extended across the wider Delhi NCR region.' }
+];
+
+const testimonials = [
+  { quote: 'Smart Steps took the time to understand what we were looking for and kept us updated at every step.', name: 'Sample Client', context: 'Residential Property, Ghaziabad' },
+  { quote: 'The team was easy to reach on WhatsApp and answered our questions clearly and promptly.', name: 'Sample Client', context: 'Commercial Property, Noida' },
+  { quote: 'We appreciated the straightforward guidance while comparing a few property options in the area.', name: 'Sample Client', context: 'Plot Purchase, Delhi NCR' }
+];
+
+const whyChooseUs = [
+  { icon: 'compass', title: 'Local Market Knowledge', description: 'Familiarity with Siddhart Vihar and the wider Ghaziabad property landscape.' },
+  { icon: 'clipboard', title: 'Personalized Assistance', description: 'Property options matched to your requirement, budget and timeline.' },
+  { icon: 'check-circle', title: 'Transparent Communication', description: 'Clear updates and honest answers at every stage of your search.' },
+  { icon: 'users', title: 'Customer-Focused Approach', description: 'Your requirement guides the conversation, not a fixed sales script.' },
+  { icon: 'pin', title: 'Delhi NCR Coverage', description: 'Assistance extended across Ghaziabad, Noida and the wider Delhi NCR region.' },
+  { icon: 'handshake', title: 'Options Based on Requirement', description: 'We work from what you actually need, not a one-size-fits-all list.' }
+];
+
+const featuredProjects = getFeaturedProjects(3);
+---
+
+<BaseLayout
+  title="Real Estate & Property Consultant in Ghaziabad | Smart Steps Siddhart Vihar"
+  description="Smart Steps Siddhart Vihar is a real estate and property consultant based in Ghaziabad, assisting buyers, sellers and investors across Ghaziabad, Noida and Delhi NCR."
+  path="/"
+  jsonLd={jsonLd}
+>
+  <!-- 1. Hero -->
+  <Hero
+    eyebrow="Property Consultant · Siddhart Vihar, Ghaziabad"
+    title="Your Trusted Real Estate & Property Consultant in Ghaziabad"
+    subtitle={`${SITE.name} helps you buy, sell and evaluate residential and commercial properties across Siddhart Vihar, Ghaziabad, Noida and Delhi NCR  with clear communication at every step.`}
+    image="https://images.unsplash.com/photo-1525953776754-6c4b7ee655ab?auto=format&fit=crop&w=1000&q=80"
+    imageAlt="Modern residential apartment building exterior"
+  />
+
+  <!-- 2. About Smart Steps -->
+  <section class="section">
+    <div class="container about-grid">
+      <div class="about-media">
+        <img
+          src="https://images.unsplash.com/photo-1616587896595-51352538155b?auto=format&fit=crop&w=900&q=80"
+          alt="Property consultant discussing property options with clients"
+          width="560"
+          height="440"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <SectionHeading eyebrow="About Smart Steps" title="A Local Property Consultant You Can Talk To" />
+        <p>
+          {SITE.name} is based in Siddhart Vihar, Ghaziabad, and works with buyers, sellers and
+          investors on residential and commercial property requirements. Our focus stays on
+          understanding what you need and connecting you with relevant options across Ghaziabad,
+          Noida and Delhi NCR.
+        </p>
+        <p>
+          From an initial conversation about your requirement to helping you shortlist properties,
+          we aim to keep the process clear and easy to follow.
+        </p>
+        <a class="btn btn-outline" href="/about-us/">About Smart Steps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Our Real Estate Services -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        eyebrow="What We Do"
+        title="Our Real Estate Services"
+        description="Practical assistance across buying, selling and evaluating residential and commercial property."
+      />
+      <div class="grid grid-3">
+        {services.map((service) => <ServiceCard {...service} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Featured Projects -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Explore"
+        title="Featured Projects"
+        description="A sample of the property types we assist with. Contact us to check current availability and verified details."
+      />
+      <div class="grid grid-3">
+        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+      <div class="section-footer-link">
+        <a class="btn btn-primary" href="/projects/">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Why Choose Smart Steps -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Why Smart Steps"
+        title="Why Buyers & Sellers Work With Us"
+      />
+      <div class="grid grid-3 why-grid">
+        {whyChooseUs.map((item) => <ServiceCard {...item} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Property Categories -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="Categories" title="Browse by Property Type" />
+      <div class="grid grid-4">
+        {propertyCategories.map((cat) => <ServiceCard {...cat} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Areas We Serve -->
+  <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Where We Help"
+        title="Areas We Serve"
+        description="We assist customers with property requirements across the following areas."
+      />
+      <div class="grid grid-4">
+        {areas.map((area) => <LocationCard {...area} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Property Investment Assistance -->
+  <section class="section">
+    <div class="container invest-grid">
+      <div>
+        <SectionHeading
+          eyebrow="Considering an Investment?"
+          title="Property Investment Assistance"
+        />
+        <p>
+          If you are exploring real estate as part of your investment plans, we can help you look
+          at relevant residential and commercial property options across Ghaziabad, Noida and
+          Delhi NCR. Our role is to help you understand the options available  not to promise
+          specific returns or appreciation.
+        </p>
+        <p>
+          Every property decision carries its own risks and considerations, and we encourage you
+          to evaluate each option carefully, including with independent legal and financial advice
+          where relevant.
+        </p>
+        <a class="btn btn-outline" href="/contact-us/">Discuss Your Property Requirement</a>
+      </div>
+      <div class="invest-media">
+        <img
+          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80"
+          alt="Small house model on a table beside property documents"
+          width="520"
+          height="400"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Testimonials -->
+  <!-- <section class="section section--alt">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Client Feedback"
+        title="What Clients Say"
+        description="Sample testimonials shown for illustration  to be replaced with genuine client reviews."
+      />
+      <div class="grid grid-3">
+        {testimonials.map((t) => <TestimonialCard {...t} />)}
+      </div>
+    </div>
+  </section> -->
+
+  <!-- 10. Final CTA -->
+  <section class="section">
+    <div class="container">
+      <CTA
+        title="Looking for the Right Property?"
+        description="Tell us what you need and we'll help you look at relevant options across Ghaziabad, Noida and Delhi NCR."
+        showLocation={true}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .about-media img {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    aspect-ratio: 4/3.1;
+    object-fit: cover;
+  }
+  .section-footer-link {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .invest-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .invest-media img {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    aspect-ratio: 4/3.1;
+    object-fit: cover;
+  }
+  @media (max-width: 900px) {
+    .about-grid, .invest-grid { grid-template-columns: 1fr; }
+    .invest-media { order: -1; }
+  }
+</style>

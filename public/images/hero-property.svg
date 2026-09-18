@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1040" width="1280" height="1040" role="img" aria-label="Modern residential building exterior placeholder">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#063E32"/>
+      <stop offset="100%" stop-color="#0B6B4F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="1040" fill="url(#g1)"/>
+  <rect x="386.0" y="669.0" width="34" height="34" fill="#C89B2C" opacity="0.11" transform="rotate(45 403 686)" />
+<rect x="1113.0" y="854.0" width="58" height="58" fill="#8BCF45" opacity="0.13" transform="rotate(45 1142 883)" />
+<rect x="883.5" y="889.5" width="43" height="43" fill="#C89B2C" opacity="0.09" transform="rotate(45 905 911)" />
+
+  <rect x="0" y="0" width="1280" height="1040" fill="none" stroke="#C89B2C" stroke-width="2" opacity="0.35"/>
+  <text x="50%" y="46%" text-anchor="middle" font-family="Georgia, serif" font-size="57" fill="#FFFFFF" font-weight="700">Siddhart Vihar, Ghaziabad</text>
+  <text x="50%" y="56%" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#C89B2C" letter-spacing="1">SAMPLE IMAGE — REPLACE WITH REAL PHOTO</text>
+</svg>

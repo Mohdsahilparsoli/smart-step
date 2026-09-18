@@ -1,0 +1,143 @@
+---
+import { SITE, whatsappLink } from '../data/site.js';
+import Icon from './Icon.astro';
+
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  primaryLabel?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  eyebrow = 'Property Consultant',
+  title,
+  subtitle,
+  image,
+  imageAlt,
+  primaryLabel = 'Call Now',
+  secondaryLabel = 'WhatsApp Us'
+} = Astro.props;
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy fade-up">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="hero-sub">{subtitle}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={SITE.phoneHref}><Icon name="phone" size={17} /> {primaryLabel}</a>
+        <a class="btn btn-gold" href={whatsappLink('general')} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={17} /> {secondaryLabel}</a>
+      </div>
+      <p class="hero-phone">Speak with us directly: <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></p>
+    </div>
+
+    <div class="hero-media">
+      <img
+        src={image}
+        alt={imageAlt}
+        width="640"
+        height="520"
+        fetchpriority="high"
+        loading="eager"
+      />
+      <div class="hero-badge">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        Serving Ghaziabad · Noida · Delhi NCR
+      </div>
+    </div>
+  </div>
+  <div class="hero-shape" aria-hidden="true"></div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 5.5rem);
+    background: linear-gradient(180deg, var(--color-offwhite) 0%, var(--color-white) 100%);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-sub {
+    font-size: 1.08rem;
+    max-width: 46ch;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-phone {
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+  }
+  .hero-phone a {
+    color: var(--color-emerald);
+    font-weight: 700;
+  }
+
+  .hero-media {
+    position: relative;
+  }
+
+  .hero-media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3.2;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-badge {
+    position: absolute;
+    left: 1.25rem;
+    bottom: -1.25rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    border-radius: 999px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-deep-green);
+  }
+
+  .hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-gold);
+  }
+
+  .hero-shape {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    border: 2px solid var(--color-gold);
+    border-radius: 30px;
+    transform: rotate(20deg);
+    opacity: 0.18;
+    pointer-events: none;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-media { order: -1; }
+  }
+</style>

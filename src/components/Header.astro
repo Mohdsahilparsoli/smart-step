@@ -1,0 +1,223 @@
+---
+import { SITE, NAV_LINKS, whatsappLink } from '../data/site.js';
+import Icon from './Icon.astro';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label={`${SITE.name} — Home`}>
+      <img
+        src={SITE.logo}
+        alt={SITE.logoAlt}
+        width="180"
+        height="52"
+        class="brand-logo"
+      />
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        {NAV_LINKS.map((link) => {
+          const isActive = currentPath === link.href;
+          return (
+            <li>
+              <a href={link.href} aria-current={isActive ? 'page' : undefined}>{link.label}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <div class="header-ctas">
+      <a class="btn btn-outline btn-sm" href={SITE.phoneHref}>
+        <Icon name="phone" size={17} /> Call Now
+      </a>
+      <a class="btn btn-whatsapp btn-sm" href={whatsappLink('general')} target="_blank" rel="noopener noreferrer">
+        <Icon name="whatsapp" size={17} /> WhatsApp
+      </a>
+    </div>
+
+    <button
+      class="hamburger"
+      id="hamburger-btn"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open navigation menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav aria-label="Mobile">
+      <ul>
+        {NAV_LINKS.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="mobile-ctas">
+      <a class="btn btn-primary" href={SITE.phoneHref}><Icon name="phone" size={17} /> Call Now</a>
+      <a class="btn btn-whatsapp" href={whatsappLink('general')} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={17} /> Chat on WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid var(--color-border);
+    transition: box-shadow 0.25s ease;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    min-height: 68px;
+  }
+
+  .brand-logo {
+    height: 46px;
+    width: auto;
+  }
+
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.9rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-nav a {
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--color-text-dark);
+    padding: 0.4rem 0.1rem;
+    position: relative;
+  }
+
+  .main-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--color-gold);
+    transition: width 0.2s ease;
+  }
+
+  .main-nav a:hover::after,
+  .main-nav a[aria-current="page"]::after {
+    width: 100%;
+  }
+
+  .main-nav a[aria-current="page"] { color: var(--color-deep-green); }
+
+  .header-ctas {
+    display: flex;
+    gap: 0.7rem;
+  }
+
+  .btn-sm {
+    padding: 0.6em 1.1em;
+    font-size: 0.9rem;
+    min-height: 42px;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-deep-green);
+    margin: 0 auto;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-white);
+    padding: 1.25rem;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    margin: 0 0 1.1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .mobile-nav a {
+    display: block;
+    padding: 0.85rem 0.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .mobile-ctas .btn { width: 100%; }
+
+  @media (max-width: 880px) {
+    .main-nav, .header-ctas { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-nav');
+
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      menu.hidden = expanded;
+      btn.setAttribute('aria-label', expanded ? 'Open navigation menu' : 'Close navigation menu');
+    });
+
+    // Close menu when a nav link is clicked
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open navigation menu');
+        menu.hidden = true;
+      });
+    });
+  }
+</script>

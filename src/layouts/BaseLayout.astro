@@ -1,0 +1,36 @@
+---
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContactButtons from '../components/FloatingContactButtons.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  jsonLd?: object | object[];
+}
+
+const { title, description, path = '/', jsonLd } = Astro.props;
+const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <SEO title={title} description={description} path={path} />
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingContactButtons />
+  </body>
+</html>

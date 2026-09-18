@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, whatsappLink } from '../data/site.js';
+import { getOrganizationSchema } from '../data/schema.js';
+
+const siteUrl = Astro.site.toString();
+const jsonLd = getOrganizationSchema(siteUrl);
+---
+
+<BaseLayout
+  title="Contact Smart Steps Siddhart Vihar | Property Consultant in Ghaziabad"
+  description="Contact Smart Steps Siddhart Vihar for property assistance in Ghaziabad, Noida and Delhi NCR. Call, WhatsApp, or send an enquiry directly."
+  path="/contact-us/"
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact Us' }]} />
+  </div>
+
+  <!-- 1. Contact Hero -->
+  <Hero
+    eyebrow="Contact"
+    title="Contact Smart Steps Siddhart Vihar"
+    subtitle="Reach out about a residential or commercial property requirement in Ghaziabad, Noida or Delhi NCR  by phone, WhatsApp, or the enquiry form below."
+    image="https://images.unsplash.com/photo-1616587896595-51352538155b?auto=format&fit=crop&w=1000&q=80"
+    imageAlt="Consultant discussing property requirements with a client"
+  />
+
+  <!-- 2. Contact Introduction -->
+  <section class="section">
+    <div class="container narrow">
+      <SectionHeading eyebrow="Get In Touch" title="We're Here to Help With Your Property Search" />
+      <p>
+        Whether you're looking to buy, sell, or simply explore what's available, you can contact
+        {SITE.name} directly. Share a few details about what you need and we'll follow up with
+        relevant property options.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Contact Information -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="grid grid-3 info-grid">
+        <div class="card info-tile">
+          <div class="info-tile-icon"><Icon name="building" size={20} /></div>
+          <h3>Business</h3>
+          <p>{SITE.name}</p>
+        </div>
+        <div class="card info-tile">
+          <div class="info-tile-icon"><Icon name="pin" size={20} /></div>
+          <h3>Location</h3>
+          <p>{SITE.location}</p>
+        </div>
+        <div class="card info-tile">
+          <div class="info-tile-icon"><Icon name="phone" size={20} /></div>
+          <h3>Reach Us</h3>
+          <p><a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></p>
+          <p><a href={whatsappLink('contact')} target="_blank" rel="noopener noreferrer">WhatsApp: {SITE.phoneDisplay}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Call Us -->
+  <section class="section">
+    <div class="container call-block">
+      <div>
+        <h2>Talk to a Property Consultant</h2>
+        <p>Prefer speaking directly? Call us for a quick conversation about your property requirement.</p>
+      </div>
+      <a class="btn btn-primary btn-lg" href={SITE.phoneHref}><Icon name="phone" size={18} /> Call Now  {SITE.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <!-- 5. WhatsApp Us -->
+  <section class="section section--alt">
+    <div class="container call-block">
+      <div>
+        <h2>Discuss Your Property Requirement on WhatsApp</h2>
+        <p>Send us a message with what you're looking for and we'll get back to you.</p>
+      </div>
+      <a class="btn btn-whatsapp btn-lg" href={whatsappLink('contact')} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} /> Chat on WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- 6. Enquiry Form -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading eyebrow="Send an Enquiry" title="Property Enquiry Form" />
+      <form class="enquiry-form" name="property-enquiry" id="enquiry-form">
+        <div class="form-row">
+          <label for="name">Full Name <span aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="form-row">
+          <label for="phone">Phone Number <span aria-hidden="true">*</span></label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" />
+        </div>
+        <div class="form-row">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" autocomplete="email" />
+        </div>
+        <div class="form-row">
+          <label for="requirement">Property Requirement <span aria-hidden="true">*</span></label>
+          <select id="requirement" name="requirement" required>
+            <option value="">Select an option</option>
+            <option value="residential-buy">Residential  Buying</option>
+            <option value="residential-sell">Residential  Selling</option>
+            <option value="commercial-buy">Commercial  Buying</option>
+            <option value="commercial-sell">Commercial  Selling</option>
+            <option value="plot-land">Plot / Land</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-row form-row--full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us more about what you're looking for"></textarea>
+        </div>
+        <div class="form-row form-row--full">
+          <button type="submit" class="btn btn-primary" id="enquiry-submit">
+            <Icon name="mail" size={17} /> Submit Enquiry
+          </button>
+          <p class="form-status" id="enquiry-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 78ch; }
+
+  .info-tile { padding: 1.7rem 1.5rem; }
+  .info-tile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-offwhite);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold);
+    margin-bottom: 0.8rem;
+  }
+  .info-tile h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-gold); margin-bottom: 0.5rem; }
+  .info-tile p { margin: 0; font-weight: 600; color: var(--color-text-dark); }
+  .info-tile a { color: var(--color-emerald); }
+
+  .call-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .call-block h2 { margin-bottom: 0.4rem; }
+  .call-block p { margin: 0; }
+  .btn-lg { padding: 1em 1.8em; font-size: 1rem; }
+
+  .enquiry-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+    background: var(--color-offwhite);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .form-row { display: flex; flex-direction: column; gap: 0.45rem; }
+  .form-row--full { grid-column: 1 / -1; }
+  .enquiry-form label { font-weight: 600; font-size: 0.92rem; color: var(--color-text-dark); }
+  .enquiry-form input,
+  .enquiry-form select,
+  .enquiry-form textarea {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.75em 0.9em;
+    font-family: var(--font-body);
+    font-size: 0.96rem;
+    background: var(--color-white);
+    color: var(--color-text-dark);
+  }
+  .enquiry-form input:focus,
+  .enquiry-form select:focus,
+  .enquiry-form textarea:focus {
+    border-color: var(--color-gold);
+  }
+  .form-status {
+    font-size: 0.9rem;
+    margin-top: 0.9rem;
+    min-height: 1.2em;
+  }
+  .form-status[data-state="success"] { color: var(--color-emerald); font-weight: 600; }
+  .form-status[data-state="error"] { color: #b3261e; font-weight: 600; }
+  .form-status[data-state="sending"] { color: var(--color-text-muted); }
+
+  @media (max-width: 700px) {
+    .enquiry-form { grid-template-columns: 1fr; }
+    .call-block { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('enquiry-form') as HTMLFormElement | null;
+  const status = document.getElementById('enquiry-status');
+  const submitBtn = document.getElementById('enquiry-submit') as HTMLButtonElement | null;
+
+  if (form && status && submitBtn) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      submitBtn.disabled = true;
+      status.dataset.state = 'sending';
+      status.textContent = 'Sending your enquiry…';
+
+      try {
+        const response = await fetch('/api/contact/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error('Request failed');
+
+        status.dataset.state = 'success';
+        status.textContent = "Thank you  your enquiry has been sent. We'll get back to you shortly.";
+        form.reset();
+      } catch (err) {
+        status.dataset.state = 'error';
+        status.textContent = "Sorry, we couldn't send your enquiry right now. Please call or WhatsApp us directly.";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>

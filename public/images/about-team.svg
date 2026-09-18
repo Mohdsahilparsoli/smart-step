@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 880" width="1120" height="880" role="img" aria-label="Consultant discussing property options placeholder">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#063E32"/>
+      <stop offset="100%" stop-color="#0B6B4F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1120" height="880" fill="url(#g2)"/>
+  <rect x="977.5" y="127.5" width="35" height="35" fill="#C89B2C" opacity="0.09" transform="rotate(45 995 145)" />
+<rect x="942.5" y="236.5" width="49" height="49" fill="#8BCF45" opacity="0.11" transform="rotate(45 967 261)" />
+<rect x="313.0" y="693.0" width="32" height="32" fill="#C89B2C" opacity="0.14" transform="rotate(45 329 709)" />
+
+  <rect x="0" y="0" width="1120" height="880" fill="none" stroke="#C89B2C" stroke-width="2" opacity="0.35"/>
+  <text x="50%" y="46%" text-anchor="middle" font-family="Georgia, serif" font-size="50" fill="#FFFFFF" font-weight="700">Smart Steps</text>
+  <text x="50%" y="56%" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#C89B2C" letter-spacing="1">SAMPLE IMAGE — REPLACE WITH REAL PHOTO</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 800" width="1040" height="800" role="img" aria-label="Consultant and client reviewing documents placeholder">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#063E32"/>
+      <stop offset="100%" stop-color="#0B6B4F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1040" height="800" fill="url(#g3)"/>
+  <rect x="315.0" y="654.0" width="64" height="64" fill="#C89B2C" opacity="0.09" transform="rotate(45 347 686)" />
+<rect x="687.0" y="530.0" width="70" height="70" fill="#8BCF45" opacity="0.14" transform="rotate(45 722 565)" />
+<rect x="694.0" y="63.0" width="60" height="60" fill="#C89B2C" opacity="0.11" transform="rotate(45 724 93)" />
+
+  <rect x="0" y="0" width="1040" height="800" fill="none" stroke="#C89B2C" stroke-width="2" opacity="0.35"/>
+  <text x="50%" y="46%" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="#FFFFFF" font-weight="700">Property Consultation</text>
+  <text x="50%" y="56%" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#C89B2C" letter-spacing="1">SAMPLE IMAGE — REPLACE WITH REAL PHOTO</text>
+</svg>
