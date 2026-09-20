@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 
 // IMPORTANT:
 // Replace this with the real production domain before deploying.
@@ -16,9 +16,9 @@ export default defineConfig({
   },
   // Every page still builds as static HTML (fast, cheap to host) except
   // /api/contact, which opts out of prerendering (see that file) so it can
-  // run nodemailer on the server. The Node adapter is what makes that one
-  // dynamic route possible — see README.md for how to run/deploy this.
-  adapter: node({ mode: 'standalone' }),
+  // run nodemailer on the server. The Vercel adapter turns that one route
+  // into a Vercel Serverless Function automatically on deploy — see README.md.
+  adapter: vercel(),
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404')

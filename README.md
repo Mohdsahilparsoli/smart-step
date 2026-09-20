@@ -8,26 +8,55 @@ Consultant, Ghaziabad).
 ```bash
 npm install
 cp .env.example .env   # then fill in your real SMTP details (see below)
-npm run dev             # local dev server
-npm run build            # production build -> ./dist
-npm run start             # run the production server (needed for the contact form API)
+npm run dev             # local dev server — try http://localhost:4321
+npm run build            # production build -> ./dist and ./.vercel/output
 ```
 
-## Important: this is no longer a pure static site
+## Deploying — Vercel (recommended)
 
-Because the contact form now sends real email through nodemailer, the site has one dynamic
-server route: `/api/contact/`. Every other page (`/`, `/about-us/`, `/projects/`,
-`/contact-us/`) still builds as plain static HTML for speed and SEO, but the project as a whole
-needs a **Node.js server** to run, not just static file hosting (Netlify/Vercel static, GitHub
-Pages, S3, etc. won't work out of the box for the contact form).
+This project uses the **`@astrojs/vercel`** adapter, so it deploys on Vercel with zero extra
+config: connect the repo (or run `vercel deploy` / `vercel --prod`) and Vercel builds the 4
+static pages plus one serverless function for `/api/contact/` automatically.
 
-- `npm run build` produces `dist/client` (static assets/pages) and `dist/server` (the Node
-  server that also serves those static pages).
-- To run it in production: `node dist/server/entry.mjs` (or `npm start`), then put it behind a
-  reverse proxy (Nginx) or a Node host (Render, Railway, a VPS with PM2, etc.).
-- Alternatively, if you'd rather keep pure static hosting, swap the contact form for a
-  third-party form service (Formspree, Web3Forms, etc.) instead of nodemailer, or deploy
-  `/api/contact` separately as a serverless function.
+**You must add environment variables in the Vercel dashboard** (Project → Settings →
+Environment Variables) — a local `.env` file is *not* uploaded to Vercel:
+
+```
+SMTP_HOST
+SMTP_PORT
+SMTP_SECURE
+SMTP_USER
+SMTP_PASS
+CONTACT_FROM_EMAIL
+CONTACT_TO_EMAIL
+PUBLIC_SITE_URL   (set this to your real *.vercel.app or custom domain)
+```
+
+Add them, then redeploy — until then the contact form will show a graceful "couldn't send"
+message instead of crashing.
+
+> Previously this project used the `@astrojs/node` adapter for self-hosting on a plain Node
+> server (VPS, PM2, Docker, etc.). If you deploy this way instead of on Vercel, swap the
+> adapter back — see the Alternative deployment note below.
+
+## Alternative deployment — your own Node server (VPS, Docker, etc.)
+
+If you are *not* deploying to Vercel, swap the adapter:
+
+```bash
+npm uninstall @astrojs/vercel
+npm install @astrojs/node
+```
+
+```js
+// astro.config.mjs
+import node from '@astrojs/node';
+// ...
+adapter: node({ mode: 'standalone' }),
+```
+
+Then `npm run build` and run it with `node dist/server/entry.mjs` (or `npm start`) behind a
+reverse proxy such as Nginx.
 
 ## Contact form email (nodemailer) — set this up before launch
 

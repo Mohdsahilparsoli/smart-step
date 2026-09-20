@@ -25,7 +25,7 @@ const jsonLd = getOrganizationSchema(siteUrl);
   <Hero
     eyebrow="Contact"
     title="Contact Smart Steps Siddhart Vihar"
-    subtitle="Reach out about a residential or commercial property requirement in Ghaziabad, Noida or Delhi NCR  by phone, WhatsApp, or the enquiry form below."
+    subtitle="Reach out about a residential or commercial property requirement in Ghaziabad, Noida or Delhi NCR — by phone, WhatsApp, or the enquiry form below."
     image="https://images.unsplash.com/photo-1616587896595-51352538155b?auto=format&fit=crop&w=1000&q=80"
     imageAlt="Consultant discussing property requirements with a client"
   />
@@ -73,7 +73,7 @@ const jsonLd = getOrganizationSchema(siteUrl);
         <h2>Talk to a Property Consultant</h2>
         <p>Prefer speaking directly? Call us for a quick conversation about your property requirement.</p>
       </div>
-      <a class="btn btn-primary btn-lg" href={SITE.phoneHref}><Icon name="phone" size={18} /> Call Now  {SITE.phoneDisplay}</a>
+      <a class="btn btn-primary btn-lg" href={SITE.phoneHref}><Icon name="phone" size={18} /> Call Now — {SITE.phoneDisplay}</a>
     </div>
   </section>
 
@@ -109,10 +109,10 @@ const jsonLd = getOrganizationSchema(siteUrl);
           <label for="requirement">Property Requirement <span aria-hidden="true">*</span></label>
           <select id="requirement" name="requirement" required>
             <option value="">Select an option</option>
-            <option value="residential-buy">Residential  Buying</option>
-            <option value="residential-sell">Residential  Selling</option>
-            <option value="commercial-buy">Commercial  Buying</option>
-            <option value="commercial-sell">Commercial  Selling</option>
+            <option value="residential-buy">Residential — Buying</option>
+            <option value="residential-sell">Residential — Selling</option>
+            <option value="commercial-buy">Commercial — Buying</option>
+            <option value="commercial-sell">Commercial — Selling</option>
             <option value="plot-land">Plot / Land</option>
             <option value="other">Other</option>
           </select>
@@ -230,7 +230,7 @@ const jsonLd = getOrganizationSchema(siteUrl);
         if (!response.ok) throw new Error('Request failed');
 
         status.dataset.state = 'success';
-        status.textContent = "Thank you  your enquiry has been sent. We'll get back to you shortly.";
+        status.textContent = "Thank you — your enquiry has been sent. We'll get back to you shortly.";
         form.reset();
       } catch (err) {
         status.dataset.state = 'error';
