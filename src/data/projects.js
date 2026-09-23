@@ -1,9 +1,9 @@
 // Project / listing data.
-// ⚠️ PLACEHOLDER DATA — replace with verified project details before launch.
+// ⚠️ PLACEHOLDER DATA  replace with verified project details before launch.
 // Do not publish specifications, prices or amenities that have not been confirmed.
-// "isPlaceholder: true" drives a visible "Sample listing" badge in ProjectCard.astro —
+// "isPlaceholder: true" drives a visible "Sample listing" badge in ProjectCard.astro 
 // remove that flag once a project's details are confirmed as real and accurate.
-// Images are representative stock photography (Unsplash) used as visual placeholders —
+// Images are representative stock photography (Unsplash) used as visual placeholders 
 // they are not actual photos of these listings. Replace with real project photography
 // once available.
 
@@ -16,7 +16,7 @@ export const PROJECT_CATEGORIES = [
 export const PROJECTS = [
   {
     slug: 'sample-residential-apartments-siddhart-vihar',
-    name: 'Residential Apartments — Siddhart Vihar',
+    name: 'Residential Apartments  Siddhart Vihar',
     location: 'Siddhart Vihar, Ghaziabad',
     type: 'residential',
     typeLabel: 'Residential Apartments',
@@ -28,7 +28,7 @@ export const PROJECTS = [
   },
   {
     slug: 'sample-commercial-space-ghaziabad',
-    name: 'Commercial Space — Ghaziabad',
+    name: 'Commercial Space  Ghaziabad',
     location: 'Ghaziabad',
     type: 'commercial',
     typeLabel: 'Commercial Space',
@@ -40,7 +40,7 @@ export const PROJECTS = [
   },
   {
     slug: 'sample-residential-project-noida',
-    name: 'Residential Project — Noida',
+    name: 'Residential Project  Noida',
     location: 'Noida',
     type: 'residential',
     typeLabel: 'Residential Flats',
@@ -52,7 +52,7 @@ export const PROJECTS = [
   },
   {
     slug: 'sample-plot-land-ghaziabad',
-    name: 'Plot / Land Option — Ghaziabad',
+    name: 'Plot / Land Option  Ghaziabad',
     location: 'Ghaziabad',
     type: 'plots',
     typeLabel: 'Plots & Land',
@@ -64,7 +64,7 @@ export const PROJECTS = [
   },
   {
     slug: 'sample-commercial-project-delhi-ncr',
-    name: 'Commercial Project — Delhi NCR',
+    name: 'Commercial Project  Delhi NCR',
     location: 'Delhi NCR',
     type: 'commercial',
     typeLabel: 'Commercial Project',
@@ -76,7 +76,7 @@ export const PROJECTS = [
   },
   {
     slug: 'sample-residential-plots-noida-extension',
-    name: 'Residential Plots — Noida Extension',
+    name: 'Residential Plots  Noida Extension',
     location: 'Noida Extension',
     type: 'plots',
     typeLabel: 'Residential Plots',

@@ -29,6 +29,11 @@ export const NAV_LINKS = [
   { label: 'Contact Us', href: '/contact-us/' }
 ];
 
+export const LEGAL_LINKS = [
+  { label: 'Privacy Policy', href: '/privacy-policy/' },
+  { label: 'Terms & Conditions', href: '/terms-conditions/' }
+];
+
 export const WHATSAPP_MESSAGES = {
   general: 'Hi Smart Steps, I would like to know more about property options in Ghaziabad, Noida or Delhi NCR.',
   project: 'Hi Smart Steps, I am interested in one of your listed projects. Could you share more details?',

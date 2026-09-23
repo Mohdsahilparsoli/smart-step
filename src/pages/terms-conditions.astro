@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTA from '../components/CTA.astro';
+import { SITE } from '../data/site.js';
+
+const lastUpdated = new Date().toLocaleDateString('en-IN', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+---
+
+<BaseLayout
+  title="Terms & Conditions | Smart Steps Siddhart Vihar"
+  description="Read the terms and conditions for using the Smart Steps Siddhart Vihar website and for engaging with our real estate and property consultancy services."
+  path="/terms-conditions/"
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Terms & Conditions' }]} />
+  </div>
+
+  <section class="section legal-hero">
+    <div class="container">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms &amp; Conditions</h1>
+      <p class="hero-sub">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow legal-content">
+      <p>
+        These Terms &amp; Conditions ("Terms") govern your use of this website, operated by
+        {SITE.name}. By using this website, you agree to these Terms. If you do not agree,
+        please do not use this website.
+      </p>
+
+      <h2>About Our Services</h2>
+      <p>
+        {SITE.name} is a real estate and property consultancy assisting buyers, sellers and
+        investors with residential and commercial property requirements across {SITE.serviceAreas.join(', ')}.
+        Any assistance we provide is advisory and facilitative in nature.
+      </p>
+
+      <h2>Use of This Website</h2>
+      <p>You agree to use this website only for lawful purposes and in a way that does not:</p>
+      <ul>
+        <li>Infringe the rights of, or restrict or inhibit the use of this website by, anyone else.</li>
+        <li>Involve submitting false, misleading or fraudulent information through our enquiry form.</li>
+        <li>Attempt to gain unauthorized access to this website, its servers, or any connected systems.</li>
+      </ul>
+
+      <h2>Property Information Disclaimer</h2>
+      <p>
+        Property listings, images and descriptions shown on this website  including on the
+        Projects page  are for general informational purposes and may include sample or
+        representative content. They do not constitute an offer, guarantee, or binding
+        representation regarding any specific property, its price, availability, specifications
+        or legal status.
+      </p>
+      <p>
+        We do not guarantee investment returns, property appreciation, or any specific financial
+        outcome from a property purchase, sale or investment. Any property decision should be
+        made after independent verification and, where appropriate, professional legal and
+        financial advice.
+      </p>
+
+      <h2>No Legal, Financial or Investment Advice</h2>
+      <p>
+        Content on this website is provided for general information only and does not constitute
+        legal, financial, tax or investment advice. You should seek advice from qualified
+        professionals before making any property-related decision.
+      </p>
+
+      <h2>Intellectual Property</h2>
+      <p>
+        The content on this website, including the Smart Steps name, logo, text and design
+        elements, belongs to {SITE.name} or its licensors, unless otherwise stated. You may not
+        copy, reproduce or reuse this content without our prior written permission, other than
+        for personal, non-commercial reference.
+      </p>
+
+      <h2>Third-Party Links &amp; Services</h2>
+      <p>
+        This website may link to third-party services, including WhatsApp, for the purpose of
+        enabling communication with us. We are not responsible for the content, policies or
+        practices of any third-party website or service.
+      </p>
+
+      <h2>Limitation of Liability</h2>
+      <p>
+        To the extent permitted by applicable law, {SITE.name} shall not be liable for any
+        indirect, incidental or consequential loss or damage arising from your use of this
+        website or reliance on information provided on it. This website and its content are
+        provided on an "as is" and "as available" basis, without warranties of any kind.
+      </p>
+
+      <h2>Changes to These Terms</h2>
+      <p>
+        We may revise these Terms from time to time. Changes will take effect once posted on
+        this page, and the "Last updated" date above will reflect the most recent revision.
+        Continued use of this website after changes are posted constitutes acceptance of the
+        updated Terms.
+      </p>
+
+      <h2>Governing Law</h2>
+      <p>
+        These Terms are governed by the laws of India. Any disputes arising in connection with
+        this website or our services shall be subject to the jurisdiction of the competent courts
+        in Ghaziabad, Uttar Pradesh.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>If you have any questions about these Terms, please contact us:</p>
+      <ul class="contact-list">
+        <li><strong>{SITE.name}</strong></li>
+        <li>{SITE.location}</li>
+        <li>Phone: <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></li>
+      </ul>
+
+      <p class="disclaimer-note">
+        This document is provided as a general reference for visitors to this website and does
+        not constitute legal advice. We recommend having these Terms reviewed by a qualified
+        legal professional to ensure they are accurate and complete for your business.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <CTA
+        title="Questions About These Terms?"
+        description="Reach out and we'll be happy to help."
+        showLocation={true}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-hero {
+    background: var(--color-offwhite);
+    padding-bottom: 2rem;
+  }
+  .legal-hero .hero-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .narrow { max-width: 74ch; }
+  .legal-content h2 {
+    margin-top: 2.2rem;
+    font-size: 1.3rem;
+  }
+  .legal-content ul {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1em;
+  }
+  .contact-list {
+    list-style: none;
+    padding: 0;
+  }
+  .disclaimer-note {
+    margin-top: 2.5rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--color-offwhite);
+    border-left: 3px solid var(--color-gold);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+  }
+</style>

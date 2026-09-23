@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTA from '../components/CTA.astro';
+import { SITE } from '../data/site.js';
+
+const lastUpdated = new Date().toLocaleDateString('en-IN', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+---
+
+<BaseLayout
+  title="Privacy Policy | Smart Steps Siddhart Vihar"
+  description="Read the privacy policy for Smart Steps Siddhart Vihar, explaining how we collect, use and protect information shared with us through this website."
+  path="/privacy-policy/"
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy Policy' }]} />
+  </div>
+
+  <section class="section legal-hero">
+    <div class="container">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="hero-sub">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow legal-content">
+      <p>
+        {SITE.name} ("we", "us", "our") operates this website to share information about our
+        real estate and property consultancy services and to let visitors get in touch with us.
+        This Privacy Policy explains what information we collect when you use this website, how
+        we use it, and the choices you have.
+      </p>
+
+      <h2>Information We Collect</h2>
+      <p>We may collect the following information when you interact with this website:</p>
+      <ul>
+        <li>
+          <strong>Information you provide directly</strong>  such as your name, phone number,
+          email address, property requirement and any message you submit through our enquiry
+          form, or share with us via a phone call or WhatsApp.
+        </li>
+        <li>
+          <strong>Automatically collected information</strong>  such as general technical data
+          (browser type, device type, pages visited) that may be collected through standard web
+          hosting and analytics tools, where used.
+        </li>
+      </ul>
+
+      <h2>How We Use Your Information</h2>
+      <p>Information you share with us is used to:</p>
+      <ul>
+        <li>Respond to your property enquiry and follow up with relevant options.</li>
+        <li>Communicate with you by phone, WhatsApp or email regarding your requirement.</li>
+        <li>Improve this website and the services we offer.</li>
+        <li>Meet any applicable legal or regulatory obligations.</li>
+      </ul>
+      <p>We do not sell your personal information to third parties.</p>
+
+      <h2>WhatsApp &amp; Phone Communication</h2>
+      <p>
+        If you contact us via the WhatsApp or Call links on this website, your conversation is
+        subject to WhatsApp's and your telecom provider's own privacy practices, in addition to
+        this policy. We use these channels only to respond to your property enquiry.
+      </p>
+
+      <h2>Cookies &amp; Similar Technologies</h2>
+      <p>
+        This website may use basic cookies or similar technologies required for it to function
+        correctly, and may use analytics tools to understand how visitors use the site. You can
+        control or disable cookies through your browser settings; doing so may affect some
+        website functionality.
+      </p>
+
+      <h2>Third-Party Links</h2>
+      <p>
+        This website may contain links to third-party websites or services (for example,
+        WhatsApp). We are not responsible for the privacy practices or content of those third
+        parties, and we encourage you to review their respective privacy policies.
+      </p>
+
+      <h2>Data Security</h2>
+      <p>
+        We take reasonable steps to protect the information you share with us. However, no
+        method of transmission over the internet or electronic storage is completely secure, and
+        we cannot guarantee absolute security.
+      </p>
+
+      <h2>Data Retention</h2>
+      <p>
+        We retain enquiry information for as long as reasonably necessary to respond to your
+        request and maintain our business records, unless a longer retention period is required
+        by law.
+      </p>
+
+      <h2>Your Choices</h2>
+      <p>
+        You may contact us at any time to ask what information we hold about you, to request a
+        correction, or to request that we stop contacting you. We will respond to reasonable
+        requests in line with applicable law.
+      </p>
+
+      <h2>Children's Privacy</h2>
+      <p>
+        This website is intended for adults seeking property-related assistance and is not
+        directed at children. We do not knowingly collect personal information from children.
+      </p>
+
+      <h2>Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time to reflect changes in our practices
+        or for legal reasons. The "Last updated" date at the top of this page will reflect the
+        most recent revision.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have any questions about this Privacy Policy or how your information is handled,
+        please contact us:
+      </p>
+      <ul class="contact-list">
+        <li><strong>{SITE.name}</strong></li>
+        <li>{SITE.location}</li>
+        <li>Phone: <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></li>
+      </ul>
+
+      <p class="disclaimer-note">
+        This policy is provided as a general reference for visitors to this website and does not
+        constitute legal advice. We recommend having this document reviewed by a qualified legal
+        professional to ensure it fully reflects your data practices and complies with
+        applicable law.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <CTA
+        title="Have a Question About Your Data?"
+        description="Reach out and we'll be happy to help."
+        showLocation={true}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-hero {
+    background: var(--color-offwhite);
+    padding-bottom: 2rem;
+  }
+  .legal-hero .hero-sub {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .narrow { max-width: 74ch; }
+  .legal-content h2 {
+    margin-top: 2.2rem;
+    font-size: 1.3rem;
+  }
+  .legal-content ul {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1em;
+  }
+  .legal-content li strong { color: var(--color-text-dark); }
+  .contact-list {
+    list-style: none;
+    padding: 0;
+  }
+  .disclaimer-note {
+    margin-top: 2.5rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--color-offwhite);
+    border-left: 3px solid var(--color-gold);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+  }
+</style>

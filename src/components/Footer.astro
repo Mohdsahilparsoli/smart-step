@@ -1,5 +1,5 @@
 ---
-import { SITE, NAV_LINKS, whatsappLink } from '../data/site.js';
+import { SITE, NAV_LINKS, LEGAL_LINKS, whatsappLink } from '../data/site.js';
 
 const year = new Date().getFullYear();
 ---
@@ -34,7 +34,15 @@ const year = new Date().getFullYear();
       <h3>Contact</h3>
       <ul class="footer-contact">
         <li><a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></li>
-        <li><a href={whatsappLink('general')} target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+        <li>
+          <a
+            href={whatsappLink('general')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp Us
+          </a>
+        </li>
         <li>{SITE.location}</li>
       </ul>
     </div>
@@ -49,7 +57,29 @@ const year = new Date().getFullYear();
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>&copy; {year} {SITE.name}. All rights reserved.</p>
+      <p style="color: #fff;">&copy; {year} {SITE.name}. All rights reserved.</p>
+
+      <ul class="footer-legal">
+        {LEGAL_LINKS.map((link, index) => (
+          <li>
+            <a href={link.href} style="color: #fff;">{link.label}</a>
+            {index !== LEGAL_LINKS.length - 1 && (
+              <span class="legal-sep" aria-hidden="true">·</span>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <p class="developed-by" style="color: #fff;">
+        Designed &amp; Developed by
+        <a
+          href="https://growvika.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GrowVika
+        </a>
+      </p>
     </div>
   </div>
 </footer>
@@ -99,9 +129,17 @@ const year = new Date().getFullYear();
     font-size: 0.95rem;
   }
 
-  .footer-col a { color: rgba(255,255,255,0.82); }
-  .footer-col a:hover { color: var(--color-gold-light); }
-  .footer-contact li { color: rgba(255,255,255,0.82); }
+  .footer-col a {
+    color: rgba(255,255,255,0.82);
+  }
+
+  .footer-col a:hover {
+    color: var(--color-gold-light);
+  }
+
+  .footer-contact li {
+    color: rgba(255,255,255,0.82);
+  }
 
   .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.14);
@@ -111,7 +149,58 @@ const year = new Date().getFullYear();
     padding: 1.25rem 1.25rem;
     font-size: 0.85rem;
     color: rgba(255,255,255,0.6);
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .footer-bottom-inner p {
+    margin: 0;
+  }
+
+  .footer-legal {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-legal li {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .footer-legal a {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer-legal a:hover {
+    color: var(--color-gold-light);
+  }
+
+  .legal-sep {
+    color: rgba(255,255,255,0.3);
+  }
+
+  .developed-by {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .developed-by a {
+    color: var(--color-gold-light);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 0.3rem;
+  }
+
+  .developed-by a:hover {
+    text-decoration: underline;
   }
 
   @media (max-width: 880px) {
@@ -119,7 +208,15 @@ const year = new Date().getFullYear();
       grid-template-columns: 1fr 1fr;
     }
   }
+
   @media (max-width: 560px) {
-    .footer-grid { grid-template-columns: 1fr; }
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-inner {
+      flex-direction: column;
+      text-align: center;
+    }
   }
 </style>
